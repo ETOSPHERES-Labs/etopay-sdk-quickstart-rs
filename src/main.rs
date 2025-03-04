@@ -1,7 +1,7 @@
 
 use std::path::Path;
 
-use cawaena_sdk::{core::{config::DeserializedConfig, Config, Sdk}, types::{currencies::Currency, newtypes::{EncryptionPin, PlainPassword}}};
+use cawaena_sdk::{core::{Config, Sdk}, types::{currencies::Currency, newtypes::{EncryptionPin, PlainPassword}}};
 
 mod utils;
 
@@ -17,16 +17,13 @@ async fn main() -> Result<()> {
     let username = std::env::var("USER_NAME").expect("USER_NAME must be set");
     let password = std::env::var("USER_PASSWORD").expect("USER_PASSWORD must be set");
     
-
     // Replace with the SDK Configuration for your project. Get it from the dashboard: https://dashboard.cawaena.com
-    let config_json = r#"
-    {
-       // Add your SDK configuration here
-    }"#;
-    // TODO: Merge this
-    let config: DeserializedConfig = serde_json::from_str(config_json)?;
-    let config = Config::try_from(config)?;
-
+    let config = Config::from_json(r#"
+    
+    // Add your SDK configuration here
+    
+    "#)?;
+    
     let realm = config.auth_provider.clone();
 
     // Initialize SDK from config
@@ -50,8 +47,8 @@ async fn main() -> Result<()> {
     // Set wallet password if not set
     let wallet_pin = EncryptionPin::try_from_string(WALLET_PIN)?;
     let wallet_password = PlainPassword::try_from_string(WALLET_PASSWORD)?;
-    if !sdk.is_password_set().await? {
-        sdk.set_password(&wallet_pin, &wallet_password).await?;
+    if !sdk.is_wallet_password_set().await? {
+        sdk.set_wallet_password(&wallet_pin, &wallet_password).await?;
     }
 
     // Create new wallet if no wallets exists
