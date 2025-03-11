@@ -12,7 +12,7 @@ const WALLET_PASSWORD: &str = "Strong+Wallet+Pa55word";
 async fn main() -> Result<()> {
     dotenvy::dotenv().expect("Failed to load .env file");
     let username = std::env::var("USER_NAME").expect("USER_NAME must be set");
-    let password = std::env::var("USER_PASSWORD").expect("USER_PASSWORD must be set"); 
+    let password = std::env::var("USER_PASSWORD").expect("USER_PASSWORD must be set");
     
     // Replace with the SDK Configuration for your project. Get it from the dashboard: https://dashboard.cawaena.com
     let config = Config::from_json(r#"
@@ -53,6 +53,8 @@ async fn main() -> Result<()> {
             },
         }
     ]));
+    
+    // Select which network to use
     sdk.set_network(String::from("67a1f08edf55756bae21e7eb")).await.unwrap();
     
     // Set wallet password if not set
