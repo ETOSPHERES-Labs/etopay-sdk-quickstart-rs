@@ -26,10 +26,9 @@ async fn main() -> Result<()> {
     // Initialize SDK from config
     let mut sdk = Sdk::new(config).expect("failed to initialize sdk");
 
-    // Create new user if user database not exists
-    let path_user_db = Path::new("./tmp/sdk-user.db");
-    if !path_user_db.exists() {
-        sdk.create_new_user(&username).await?;
+    // Create new user and return error if user already exists
+    if let Err(e) = sdk.create_new_user(&username).await {
+        println!("Error creating user: {e}");
     }
 
     // Initialize user
@@ -53,7 +52,7 @@ async fn main() -> Result<()> {
     }
 
     // Create new wallet if no wallets exists
-    let path_wallets = Path::new("./tmp/wallets");
+    let path_wallets = Path::new("./wallets");
     if !path_wallets.exists() {
         sdk.create_wallet_from_new_mnemonic(&wallet_pin).await?;
     }
