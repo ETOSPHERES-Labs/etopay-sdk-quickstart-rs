@@ -1,6 +1,6 @@
 
 use std::path::Path;
-use cawaena_sdk::{core::{Config, Sdk}, types::{networks::{Network, NetworkType}, newtypes::{EncryptionPin, PlainPassword}}};
+use cawaena_sdk::{core::{Config, Sdk}, types::newtypes::{EncryptionPin, PlainPassword}};
 mod utils;
 
 pub type Result<T> = core::result::Result<T, Box<dyn std::error::Error>>;
@@ -39,23 +39,11 @@ async fn main() -> Result<()> {
     let access_token = utils::get_access_token(&realm, &username, &password).await;
     sdk.refresh_access_token(Some(access_token)).await?;
 
-    // Set list of available networks
-    sdk.set_networks(Some(vec![
-        Network {
-            id: String::from("67a1f08edf55756bae21e7eb"),
-            name: String::from("IOTA"),
-            currency: String::from("IOTA"),
-            block_explorer_url: String::from("https://explorer.shimmer.network/testnet/"),
-            enabled: true,
-            network_identifier: Some(String::from("iota_mainnet")),
-            network_type: NetworkType::Stardust {
-                node_url: String::from("https://api.testnet.iotaledger.net"),
-            },
-        }
-    ]));
+    // Get list of available networks
+    let networks = sdk.get_networks().await?;
     
     // Select which network to use
-    sdk.set_network(String::from("67a1f08edf55756bae21e7eb")).await.unwrap();
+    sdk.set_network(networks[0].id.clone()).await.unwrap();
     
     // Set wallet password if not set
     let wallet_pin = EncryptionPin::try_from_string(WALLET_PIN)?;
