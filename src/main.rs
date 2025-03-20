@@ -1,6 +1,6 @@
 
 use std::path::Path;
-use cawaena_sdk::{core::{Config, Sdk}, types::newtypes::{EncryptionPin, PlainPassword}};
+use etopay_sdk::{core::{Config, Sdk}, types::newtypes::{EncryptionPin, PlainPassword}};
 mod utils;
 
 pub type Result<T> = core::result::Result<T, Box<dyn std::error::Error>>;
