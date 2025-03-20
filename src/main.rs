@@ -14,7 +14,7 @@ async fn main() -> Result<()> {
     let username = std::env::var("USER_NAME").expect("USER_NAME must be set");
     let password = std::env::var("USER_PASSWORD").expect("USER_PASSWORD must be set");
     
-    // Replace with the SDK Configuration for your project. Get it from the dashboard: https://dashboard.cawaena.com
+    // Replace with the SDK Configuration for your project. Get it from the dashboard: https://etopayapp.etospheres.com
     let config = Config::from_json(r#"
     
     // Add your SDK configuration here
