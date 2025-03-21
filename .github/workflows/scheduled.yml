@@ -54,6 +54,19 @@ jobs:
 
       - name: Audit code
         run: cargo audit --color always
+  
+  unused-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Install cargo machete
+        run: cargo install cargo-machete
+
+      - name: Check for unused dependencies
+        run: cargo machete
 
   build:
     runs-on: ubuntu-latest
