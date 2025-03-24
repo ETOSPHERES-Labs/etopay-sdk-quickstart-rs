@@ -3,6 +3,18 @@
 
 This is a quickstart example of how to use the ETOPay SDK to create a new wallet and generate the first receiver address.
 
+## Adding the dependency
+
+> The Rust SDK is currently in a pre-release state and is not yet available on the crates.io registry. 
+
+You can access the SDK by adding the following dependency to your `Cargo.toml` file:
+
+```toml
+[dependencies]
+etopay-sdk = { git = "https://github.com/ETOSPHERES-Labs/etopay-sdk", branch = "main"}
+```
+
+
 ## Getting started
 
 - Copy the .env.example file to .env and set the missing values
