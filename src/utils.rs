@@ -1,4 +1,4 @@
-use cawaena_sdk::types::newtypes::AccessToken;
+use etopay_sdk::types::newtypes::AccessToken;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]

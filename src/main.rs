@@ -1,6 +1,8 @@
-
+use etopay_sdk::{
+    core::{Config, Sdk},
+    types::newtypes::{EncryptionPin, PlainPassword},
+};
 use std::path::Path;
-use cawaena_sdk::{core::{Config, Sdk}, types::newtypes::{EncryptionPin, PlainPassword}};
 mod utils;
 
 pub type Result<T> = core::result::Result<T, Box<dyn std::error::Error>>;
@@ -13,14 +15,16 @@ async fn main() -> Result<()> {
     dotenvy::dotenv().expect("Failed to load .env file");
     let username = std::env::var("USER_NAME").expect("USER_NAME must be set");
     let password = std::env::var("USER_PASSWORD").expect("USER_PASSWORD must be set");
-    
-    // Replace with the SDK Configuration for your project. Get it from the dashboard: https://dashboard.cawaena.com
-    let config = Config::from_json(r#"
+
+    // Replace with the SDK Configuration for your project. Get it from the dashboard: https://etopayapp.etospheres.com
+    let config = Config::from_json(
+        r#"
     
     // Add your SDK configuration here
     
-    "#)?;
-    
+    "#,
+    )?;
+
     let realm = config.auth_provider.clone();
 
     // Initialize SDK from config
@@ -40,15 +44,16 @@ async fn main() -> Result<()> {
 
     // Get list of available networks
     let networks = sdk.get_networks().await?;
-    
+
     // Select which network to use
     sdk.set_network(networks[0].id.clone()).await.unwrap();
-    
+
     // Set wallet password if not set
     let wallet_pin = EncryptionPin::try_from_string(WALLET_PIN)?;
     let wallet_password = PlainPassword::try_from_string(WALLET_PASSWORD)?;
     if !sdk.is_wallet_password_set().await? {
-        sdk.set_wallet_password(&wallet_pin, &wallet_password).await?;
+        sdk.set_wallet_password(&wallet_pin, &wallet_password)
+            .await?;
     }
 
     // Create new wallet if no wallets exists
@@ -62,5 +67,4 @@ async fn main() -> Result<()> {
     println!("Address: {:?}", address);
 
     Ok(())
-
 }

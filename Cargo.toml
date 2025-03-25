@@ -1,12 +1,11 @@
 [package]
-name = "cawaena-sdk-quickstart-rs"
+name = "etopay-sdk-quickstart-rs"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-cawaena-sdk = { git = "https://github.com/ETOSPHERES-Labs/cawaena-sdk", branch = "main", package ="sdk" }
+etopay-sdk = { git = "https://github.com/ETOSPHERES-Labs/etopay-sdk", branch = "main", package ="etopay-sdk" }
 tokio = { version = "1", features = ["sync"] }
 serde = { version = "1.0.217", features = ["derive"] }
-serde_json = { version = "1.0.140", default-features = false }
 reqwest = { version = "0.12", features = ["json"] }
 dotenvy = "0.15.0"
