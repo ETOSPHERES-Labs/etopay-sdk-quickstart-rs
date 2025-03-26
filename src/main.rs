@@ -18,10 +18,8 @@ async fn main() -> Result<()> {
 
     // Replace with the SDK Configuration for your project. Get it from the dashboard: https://etopayapp.etospheres.com
     let config = Config::from_json(
-        r#"
-    
+    r#"
     // Add your SDK configuration here
-    
     "#,
     )?;
 
@@ -30,7 +28,7 @@ async fn main() -> Result<()> {
     // Initialize SDK from config
     let mut sdk = Sdk::new(config).expect("failed to initialize sdk");
 
-    // Create new user and return error if user already exists
+    // Create new user and print error if user already exists
     if let Err(e) = sdk.create_new_user(&username).await {
         println!("Error creating user: {e}");
     }
@@ -44,9 +42,10 @@ async fn main() -> Result<()> {
 
     // Get list of available networks
     let networks = sdk.get_networks().await?;
+    println!("Available Networks: {:#?}", networks);
 
     // Select which network to use
-    sdk.set_network(networks[0].id.clone()).await.unwrap();
+    sdk.set_network(networks[0].key.clone()).await.unwrap();
 
     // Set wallet password if not set
     let wallet_pin = EncryptionPin::try_from_string(WALLET_PIN)?;
