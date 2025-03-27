@@ -18,7 +18,7 @@ async fn main() -> Result<()> {
 
     // Replace with the SDK Configuration for your project. Get it from the dashboard: https://etopayapp.etospheres.com
     let config = Config::from_json(
-    r#"
+        r#"
     // Add your SDK configuration here
     "#,
     )?;
