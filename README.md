@@ -1,7 +1,9 @@
+# ETOPay SDK Rust Quickstart
 
-# Introduction
+[![ci](https://github.com/ETOSPHERES-Labs/etopay-sdk-quickstart-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/ETOSPHERES-Labs/etopay-sdk-quickstart-rs/actions/workflows/ci.yml)
 
-This is a quickstart example of how to use the ETOPay SDK to create a new wallet and generate the first receiver address.
+
+This is a quickstart example of how to use the [ETOPay SDK](https://github.com/ETOSPHERES-Labs/etopay-sdk) to create a new wallet and generate the first receiver address.
 
 ## Adding the dependency
 

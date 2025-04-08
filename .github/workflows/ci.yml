@@ -1,4 +1,4 @@
-name: "scheduled"
+name: "CI"
 on:
   # allow manually triggering
   workflow_dispatch:
