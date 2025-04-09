@@ -22,7 +22,11 @@ or
 etopay-sdk = "0.14.0-rc0"
 ```
 
+You can also add the dependency using
 
+```shell
+cargo add etopay-sdk
+```
 
 ## Getting started
 
