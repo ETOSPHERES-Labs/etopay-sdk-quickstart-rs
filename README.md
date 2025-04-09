@@ -15,6 +15,13 @@ You can access the SDK by adding the following dependency to your `Cargo.toml` f
 [dependencies]
 etopay-sdk = { git = "https://github.com/ETOSPHERES-Labs/etopay-sdk", branch = "main"}
 ```
+or
+
+```toml
+[dependencies]
+etopay-sdk = "0.14.0-rc0"
+```
+
 
 
 ## Getting started
