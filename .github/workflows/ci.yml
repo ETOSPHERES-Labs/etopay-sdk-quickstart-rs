@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@1.87.0
       - uses: Swatinem/rust-cache@v2
 
       - name: Install Protoc
@@ -40,7 +40,9 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check for clippy warnings
-        run: cargo clippy --color always -- -D warnings
+        run: |
+          rustup component add clippy
+          cargo clippy --color always -- -D warnings
   
   audit-code:
     runs-on: ubuntu-latest
