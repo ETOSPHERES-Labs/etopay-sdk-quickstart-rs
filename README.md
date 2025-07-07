@@ -19,7 +19,7 @@ or
 
 ```toml
 [dependencies]
-etopay-sdk = "0.16.0"
+etopay-sdk = "0.16.1"
 ```
 
 You can also add the dependency using
